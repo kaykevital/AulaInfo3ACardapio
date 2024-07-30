@@ -59,25 +59,39 @@ export default function App() {
         setPedidos([...listaPedidos, produto]);
     }
     console.table(listaPedidos);
+    
     return (
         <div className="bloco-principal" >
             <div className="bloco-produtos">
                 {
-                  listaProdutos.map((produto)=> 
-                      <div key={produto.id}>
-                             <img src={produto.imagem}/>
+                    listaProdutos.map((produto)=> 
+                        <div key={produto.id}>
+                            <img src={produto.imagem}/>
                             <p> { produto.item} </p>
-                            <button onClick={() => 
-                                adicionarProdutoPedido(produto)}>Quero</button>
-                      </div>
-                )
+                            <button onClick={() => adicionarProdutoPedido(produto)}>Quero</button>
+                        </div>
+                    )
                 }
             </div>
+            
             <div className="bloco-pedidos">
-                 <p>Meus Pedidos</p>
-                   { 
-                        
-                   }
+                <p>Meus Pedidos</p>
+                <table>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                    </tr>
+                    <tbody>
+                        {
+                            listaPedidos.map((pedido) => (
+                                <tr>
+                                    <td>{pedido.item}</td>
+                                    <td>{pedido.preco}</td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     );
